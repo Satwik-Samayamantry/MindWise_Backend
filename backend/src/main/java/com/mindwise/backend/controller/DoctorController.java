@@ -27,4 +27,6 @@ public class DoctorController {
         // return "Hello World";
         return doctorRepository.findAll();
     }
+
+
 }
