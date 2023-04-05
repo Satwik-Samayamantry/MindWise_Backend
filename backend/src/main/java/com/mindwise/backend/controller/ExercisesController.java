@@ -1,12 +1,6 @@
-//package com.mindwise.backend.controller;
-//
-//public class ExercisesController {
-//}
-
 package com.mindwise.backend.controller;
 
 import com.mindwise.backend.model.Exercises;
-import com.mindwise.backend.model.Patient;
 import com.mindwise.backend.repository.ExercisesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
