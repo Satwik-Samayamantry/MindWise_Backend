@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Map;
+//import com.mindwise.backend.utils.JwtUtils;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -17,7 +18,16 @@ public class LoginController {
 
     @Autowired
     private LoginRepository loginRepository;
+    @RequestMapping("hello")
+    @GetMapping("user")
+    public String helloUser() {
+        return "Hello User";
+    }
 
+    @GetMapping("admin")
+    public String helloAdmin() {
+        return "Hello Admin";
+    }
     @PostMapping("/login")
     LoginDetails newLogin(@RequestBody LoginDetails newLogin)
     {

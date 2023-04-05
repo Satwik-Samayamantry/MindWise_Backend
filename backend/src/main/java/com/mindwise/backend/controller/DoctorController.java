@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@CrossOrigin(origins = "*")
 public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
