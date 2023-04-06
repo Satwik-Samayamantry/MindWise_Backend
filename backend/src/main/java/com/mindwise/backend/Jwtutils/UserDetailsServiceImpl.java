@@ -32,8 +32,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //    }
     public UserDetails loadUserByUsername(String mobile) throws UsernameNotFoundException {
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
-        authList.add(new SimpleGrantedAuthority("verify"));
-        User userByName = new User(mobile, "087286", authList);
+        authList.add(new SimpleGrantedAuthority("Patient"));
+        User userByName = new User("user1", "user11", authList);
         return new org.springframework.security.core.userdetails.User(userByName.getUsername(), userByName.getPassword(), userByName.getAuthorities());
     }
 

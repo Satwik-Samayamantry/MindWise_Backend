@@ -1,9 +1,12 @@
 package com.mindwise.backend.controller;
 
 import com.mindwise.backend.model.LoginDetails;
+import com.mindwise.backend.model.Patient;
 import com.mindwise.backend.repository.LoginRepository;
+import com.mindwise.backend.repository.PatientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +21,9 @@ public class LoginController {
 
     @Autowired
     private LoginRepository loginRepository;
-    @RequestMapping("hello")
-    @GetMapping("user")
-    public String helloUser() {
-        return "Hello User";
-    }
+    @Autowired
+    private PatientRepository patientRepository;
 
-    @GetMapping("admin")
-    public String helloAdmin() {
-        return "Hello Admin";
-    }
     @PostMapping("/login")
     LoginDetails newLogin(@RequestBody LoginDetails newLogin)
     {
@@ -41,8 +37,10 @@ public class LoginController {
     }
 
     @PostMapping("/validate")
-    ResponseEntity<Boolean> validateLogin(@RequestBody(required = true) Map<String,String> logindetails)
+    ResponseEntity<Patient> validateLogin(@RequestBody(required = true) Map<String,String> logindetails)
     {
+        Patient failed = null;
+
         try
         {
 //            System.out.println(logindetails);
@@ -54,16 +52,17 @@ public class LoginController {
 //            System.out.println(role);
 //            System.out.println(password);
             LoginDetails l = loginRepository.getPasswordByUsername(username,role);
+            Patient pid = patientRepository.getIDByUsername(username);
             if(l != null)
             {
                 if(l.getPassword().equals(password))
                 {
-                    return new ResponseEntity<Boolean>(true, HttpStatus.OK) ;
+                    return new ResponseEntity<Patient>(pid, HttpStatus.OK) ;
                 }
                 else
-                    return new ResponseEntity<Boolean>(false, HttpStatus.OK) ;
+                    return new ResponseEntity<Patient>(failed, HttpStatus.OK) ;
             }
-            return new ResponseEntity<Boolean>(false, HttpStatus.OK) ;
+            return new ResponseEntity<Patient>(failed, HttpStatus.OK) ;
 
 
         }
@@ -71,6 +70,44 @@ public class LoginController {
         {
             e.printStackTrace();
         }
-        return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR) ;
+        return new ResponseEntity<Patient>(failed, HttpStatus.INTERNAL_SERVER_ERROR) ;
     }
+
+//    @PostMapping("/updatePassword")
+//    @Transactional
+//    ResponseEntity<Boolean> updatePassword(@RequestBody(required = true) Map<String,String> logindetails )
+//    {
+//        try
+//        {
+////            System.out.println(logindetails);
+//            String username = logindetails.get("username");
+//            String role = logindetails.get("role");
+//            String oldpassword = logindetails.get("oldpassword");
+//            String newpassword = logindetails.get("newpassword");
+//
+//
+////            System.out.println(username);
+////            System.out.println(role);
+////            System.out.println(password);
+//            LoginDetails l = loginRepository.getPasswordByUsername(username,role);
+//            if(l != null)
+//            {
+//                if(l.getPassword().equals(oldpassword))
+//                {
+//                    loginRepository.updatePassword(username,role,newpassword);
+//                    return new ResponseEntity<Boolean>(true, HttpStatus.OK) ;
+//                }
+//                else
+//                    return new ResponseEntity<Boolean>(false, HttpStatus.OK) ;
+//            }
+//            return new ResponseEntity<Boolean>(false, HttpStatus.OK) ;
+//
+//
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR) ;
+//    }
 }
