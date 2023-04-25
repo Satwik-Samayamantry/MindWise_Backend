@@ -16,6 +16,16 @@ public class Exercises {
     @GeneratedValue
     private Long exerciseID;
     private Integer defaultflag;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
     private String description;
     private String type;
     private String ans;
@@ -23,11 +33,12 @@ public class Exercises {
     public Exercises() {
     }
 
-    public Exercises(Integer defaultflag, String description, String type, String ans){
+    public Exercises(Integer defaultflag, String description, String type, String ans, String name){
         this.defaultflag = defaultflag;
         this.description = description;
         this.type = type;
         this.ans = ans;
+        this.name = name;
     }
 
     public Integer getDefaultflag() {

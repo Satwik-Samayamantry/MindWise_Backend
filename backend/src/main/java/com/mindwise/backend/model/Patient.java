@@ -10,13 +10,13 @@ public class Patient {
     @GeneratedValue
     private Long patientID;
     private String name;
-    @Temporal(TemporalType.DATE)
-    private Date dob;
+//    @Temporal(TemporalType.DATE)
+    private String dob;
     private String gender;
-    private String phoneNo;
-    private String email;
-    private String proofType;
-    private String proofNum;
+//    private String phoneNo;
+//    private String email;
+//    private String proofType;
+//    private String proofNum;
 
     private String username;
     private Integer status;
@@ -24,14 +24,14 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String name, Date dob, String gender, String phoneNo, String email, String proofType, String proofNum, String username) {
+    public Patient(String name, String dob, String gender, String username) {
         this.name = name;
         this.dob = dob;
         this.gender = gender;
-        this.phoneNo = phoneNo;
-        this.email = email;
-        this.proofType = proofType;
-        this.proofNum = proofNum;
+//        this.phoneNo = phoneNo;
+//        this.email = email;
+//        this.proofType = proofType;
+//        this.proofNum = proofNum;
         this.username = username;
         this.status = 1;
     }
@@ -52,11 +52,11 @@ public class Patient {
         this.name = name;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -68,37 +68,37 @@ public class Patient {
         this.gender = gender;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getProofType() {
-        return proofType;
-    }
-
-    public void setProofType(String proofType) {
-        this.proofType = proofType;
-    }
-
-    public String getProofNum() {
-        return proofNum;
-    }
-
-    public void setProofNum(String proofNum) {
-        this.proofNum = proofNum;
-    }
+//    public String getPhoneNo() {
+//        return phoneNo;
+//    }
+//
+//    public void setPhoneNo(String phoneNo) {
+//        this.phoneNo = phoneNo;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getProofType() {
+//        return proofType;
+//    }
+//
+//    public void setProofType(String proofType) {
+//        this.proofType = proofType;
+//    }
+//
+//    public String getProofNum() {
+//        return proofNum;
+//    }
+//
+//    public void setProofNum(String proofNum) {
+//        this.proofNum = proofNum;
+//    }
 
     public String getUsername() {
         return username;

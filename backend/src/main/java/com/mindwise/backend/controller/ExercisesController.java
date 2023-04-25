@@ -18,11 +18,18 @@ public class ExercisesController {
     {
         return exercisesRepository.save(newExercise);
     }
+
     @GetMapping("/exercises")
     List<Exercises> getAllExercises()
     {
         // return "Hello World";
         return exercisesRepository.findAll();
+    }
+
+    @GetMapping("/exercisebyid")
+    Exercises exercisebyeid(@RequestParam("exerciseid") Long exerciseid)
+    {
+        return exercisesRepository.getAllByExerciseID(exerciseid);
     }
 
 }
