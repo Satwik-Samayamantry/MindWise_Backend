@@ -49,9 +49,9 @@ public class LoginController {
             String role = logindetails.get("role");
             String password = logindetails.get("password");
 
-            System.out.println(username);
-            System.out.println(role);
-            System.out.println(password);
+//            System.out.println(username);
+//            System.out.println(role);
+//            System.out.println(password);
             LoginDetails l = loginRepository.getAllByUsernameAndRole(username,role);
 //            System.out.println(Objects.isNull(l));
             Patient pid = patientRepository.getIdByUsername(username);

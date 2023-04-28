@@ -18,6 +18,7 @@ public class Patient {
 //    private String proofType;
 //    private String proofNum;
 
+    @Column(unique=true)
     private String username;
     private Integer status;
 

@@ -19,7 +19,7 @@ public class Admin {
     @GeneratedValue
     private Long adminID;
     private String name;
-
+    @Column(unique=true)
     private String username;
     private Integer status;
 
