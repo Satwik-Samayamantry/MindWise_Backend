@@ -18,14 +18,9 @@ public class Message {
     @GeneratedValue
     private Long messageId;
     private Long chatRoomId;
-
     private Long senderId;
     private Long recipientId;
-//    private String senderName;
-//    private String recipientName;
     private String content;
     private Date timestamp;
     private Boolean readReceipt;
-
-
 }
