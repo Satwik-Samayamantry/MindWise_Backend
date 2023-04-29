@@ -1,6 +1,10 @@
 package com.mindwise.backend.controller;
 
+import com.mindwise.backend.model.Exercises;
 import com.mindwise.backend.model.Patient;
+import com.mindwise.backend.model.PatientExercises;
+import com.mindwise.backend.repository.ExercisesRepository;
+import com.mindwise.backend.repository.PatientExercisesRepository;
 import com.mindwise.backend.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +18,26 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private PatientExercisesRepository patientExercisesRepository;
+
+    @Autowired
+    private ExercisesRepository exercisesRepository;
+
     @PostMapping("/patient")
     Patient newPatient(@RequestBody Patient newPatient)
     {
-
-        return patientRepository.save(newPatient);
+        List<Exercises> defaultexer = exercisesRepository.getAllByDefaultflag(1);
+        newPatient = patientRepository.saveAndFlush(newPatient);
+        for(Exercises de : defaultexer)
+        {
+            PatientExercises temp = new PatientExercises();
+            temp.setPatientID(newPatient.getPatientID());
+            temp.setExerciseID(de.getExerciseID());
+            temp.setCompletionstatus(0);
+            patientExercisesRepository.save(temp);
+        }
+        return newPatient;
     }
 
     @GetMapping("/patients")
