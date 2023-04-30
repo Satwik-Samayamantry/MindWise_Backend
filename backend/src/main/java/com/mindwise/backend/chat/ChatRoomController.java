@@ -51,6 +51,15 @@ public class ChatRoomController {
         return chatRoomRepository.getAllByDoctorId(did);
     }
 
+    @PostMapping("/getidbydocandpatid")
+    Long getidbydocandpatid(@RequestBody Map<String,Long> data)
+    {
+        Long did = data.get("doctorid");
+            Long pid = data.get("patientid");
+
+        return chatRoomRepository.getAllByDoctorIdAndPatientId(did,pid).getChatRoomId();
+    }
+
     @PostMapping("/addmessage")
 //    void addmessage(@RequestParam("chatroomid") Long cid, @RequestParam("senderid") Long sid, @RequestParam("recipientid") Long rid, @RequestParam("content") String content, @RequestParam("readreceipt") Boolean readreceipt)
     void addmessage(@RequestBody Map<String,String> data)

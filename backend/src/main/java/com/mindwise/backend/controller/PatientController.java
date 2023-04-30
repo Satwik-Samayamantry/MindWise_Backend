@@ -92,4 +92,10 @@ public class PatientController {
         patientRepository.save(temp);
     }
 
+    @GetMapping("/getdetailsbypatid")
+    Patient getdetbypatid(@RequestParam("patientID") Long patientID)
+    {
+        return patientRepository.getAllByPatientID(patientID);
+    }
+
 }

@@ -9,4 +9,6 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
 
     ChatRoom getAllByChatRoomId(Long chatroomid);
     List<ChatRoom> getAllByDoctorId(Long did);
+
+    ChatRoom getAllByDoctorIdAndPatientId(Long doctorid, Long patientid);
 }

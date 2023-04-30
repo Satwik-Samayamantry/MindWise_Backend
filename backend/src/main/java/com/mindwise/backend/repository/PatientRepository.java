@@ -16,6 +16,6 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
 
     @Query(value = "SELECT * from patient p where p.patientid in :patientids" , nativeQuery = true)
     List<Patient> getPatientFromPatIDs(@Param("patientids") List<Long> patientids);
-
+    Patient getAllByPatientID(Long patientid);
 
 }
